@@ -19,7 +19,6 @@ class _NavigationState extends State<NavigationScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: pageList[currentIndex],
     );
   }

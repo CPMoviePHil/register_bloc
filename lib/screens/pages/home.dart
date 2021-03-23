@@ -1,24 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:register/utils/screens/screensUtils.dart';
 
 class Home extends StatefulWidget{
+
   Home({Key key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
+
 }
 
 class _HomeState extends State<Home> {
+  FocusNode accountFocus = FocusNode();
+  TextEditingController accountController = TextEditingController();
+
+  FocusNode passwordFocus = FocusNode();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: [
-          TextFormField(),
-          TextFormField(),
-          ElevatedButton(
-            onPressed: null,
-            child: Text("安安"),
-          ),
-        ],
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20,),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppTextField(
+                    onChanged: null,
+                    onSubmitted: null,
+                    onTap: null,
+                    focusNode: accountFocus,
+                    keyboardType: TextInputType.text,
+                    textEditingController: accountController,
+                    hintText: "帳號",
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 19,),
+                  ),
+                  AppTextField(
+                    onChanged: null,
+                    onSubmitted: null,
+                    onTap: null,
+                    focusNode: passwordFocus,
+                    keyboardType: TextInputType.visiblePassword,
+                    textEditingController: passwordController,
+                    hintText: "密碼",
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10,),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AppElevatedButton(
+                          onPressed: null,
+                          buttonText: "提交",
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
