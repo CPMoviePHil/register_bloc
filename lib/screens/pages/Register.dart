@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:register/utils/screens/screensUtils.dart';
 
-class Home extends StatefulWidget{
+class Register extends StatefulWidget{
 
-  Home({Key key}) : super(key: key);
+  Register({Key key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _RegisterState createState() => _RegisterState();
 
 }
 
-class _HomeState extends State<Home> {
+class _RegisterState extends State<Register> {
   FocusNode accountFocus = FocusNode();
   TextEditingController accountController = TextEditingController();
 

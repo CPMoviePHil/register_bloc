@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:register/screens/pages/home.dart';
+import 'package:register/screens/pages/Register.dart';
 
 class NavigationScreen extends StatefulWidget {
   NavigationScreen({Key key}) : super(key: key);
@@ -12,7 +12,7 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationState extends State<NavigationScreen>{
 
   final pageList = [
-    Home(),
+    Register(),
   ];
   int currentIndex = 0;
 
