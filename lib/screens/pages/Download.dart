@@ -28,7 +28,9 @@ class _DownloadState extends State<Download> {
               ),
               AppElevatedButton(
                 buttonText: "Download!",
-                onPressed: null,
+                onPressed: () {
+
+                },
                 onLongPress: null,
               ),
             ],

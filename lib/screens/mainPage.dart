@@ -3,7 +3,9 @@ import 'package:register/screens/pages/Pages.dart';
 import 'package:register/utils/screens/class/BarItem.dart';
 
 class NavigationScreen extends StatefulWidget {
-  NavigationScreen({Key key}) : super(key: key);
+  NavigationScreen({
+    Key key,
+  }) : super(key: key);
 
   @override
   _NavigationState createState() => _NavigationState();
