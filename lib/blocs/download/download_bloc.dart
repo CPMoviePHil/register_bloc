@@ -14,6 +14,8 @@ class DownloadBloc extends Bloc<DownloadEvent, DownloadState> {
   Stream<DownloadState> mapEventToState(
     DownloadEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    if (event is DownloadEventGet) {
+      
+    }
   }
 }
