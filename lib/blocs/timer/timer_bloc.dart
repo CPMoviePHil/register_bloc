@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:register/timer.dart';
+import 'file:///D:/Project/register/lib/utils/timer.dart';
 
 part 'timer_event.dart';
 part 'timer_state.dart';
