@@ -16,6 +16,17 @@ class DisplayFetchedSuccess extends DisplayState {
   final String path;
 
   DisplayFetchedSuccess({this.path});
+
+  DisplayFetchedSuccess copyWith({
+    String path,
+  }) {
+    return DisplayFetchedSuccess(
+      path: path ?? this.path,
+    );
+  }
+
+  @override
+  List<Object> get props => [path];
 }
 
 class DisplayFetchedFailed extends DisplayState {}

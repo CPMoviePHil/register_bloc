@@ -96,7 +96,7 @@ class DisplayActions extends StatelessWidget {
       );
     } else {
       return AppElevatedButton(
-        buttonText: "Get Image!",
+        buttonText: "Refresh!",
         onPressed: () {
           displayBloc.add(DisplayFetch());
         },
