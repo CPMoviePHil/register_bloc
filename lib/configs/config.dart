@@ -8,9 +8,9 @@ class Config{
 
   Config._internal();
 
-  static final String http = 'http://';
+  static final String http = 'https://';
   static final String mainDomain = 'ilolly.shoesconn.com';
-  static final String connectPort = ':7031/';
+  static final String connectPort = '/';
   static final String apiPath = 'api/';
 
   static final String domain = http + mainDomain + connectPort;

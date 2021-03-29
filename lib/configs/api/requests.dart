@@ -12,17 +12,30 @@ class RequestsManager {
 
   RequestsManager.internal();
 
+  static Map<String, String> getHeaders() {
+    return <String, String>{
+      'Content-Type': 'application/json',
+    };
+  }
+
   static Future<dynamic> post({
     Uri uri,
-    Map<String, String> params,
+    Map<String, dynamic> params,
   }) async {
     try {
       final data = await http.post(
         uri,
-        body: params,
+        headers: getHeaders(),
+        body: jsonEncode(params),
       );
       if (data.statusCode == 200) {
-        return json.decode(data.body);
+        if (json.decode(data.body)['result']) {
+          return json.decode(data.body);
+        } else {
+          return null;
+        }
+      } else {
+        return null;
       }
     } catch (e) {
       throw Exception(e);
