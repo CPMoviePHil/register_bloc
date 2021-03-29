@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:register/blocs/display/display_bloc.dart';
 import 'package:register/utils/screens/screensUtils.dart';
 
-class Download extends StatefulWidget {
-  Download({Key key}) : super(key: key);
-
+class Display extends StatelessWidget {
   @override
-  _DownloadState createState() => _DownloadState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => DisplayBloc(),
+      child: DisplayPage(),
+    );
+  }
 }
 
-class _DownloadState extends State<Download> {
+class DisplayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,13 +31,7 @@ class _DownloadState extends State<Download> {
                   borderRadius: BorderRadius.all(Radius.circular(20.0)),
                 ),
               ),
-              AppElevatedButton(
-                buttonText: "Download!",
-                onPressed: () {
-
-                },
-                onLongPress: null,
-              ),
+              DisplayActions(),
             ],
           ),
         ),
@@ -40,3 +39,17 @@ class _DownloadState extends State<Download> {
     );
   }
 }
+
+class DisplayActions extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return AppElevatedButton(
+      buttonText: "Show Image!",
+      onPressed: () {
+
+      },
+      onLongPress: null,
+    );
+  }
+}
+

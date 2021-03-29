@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:register/screens/pages/Countdown.dart';
 import 'package:register/screens/pages/Pages.dart';
 import 'package:register/utils/screens/class/BarItem.dart';
 
@@ -17,7 +16,7 @@ class _NavigationState extends State<NavigationScreen>{
 
   final pageList = [
     Register(),
-    Download(),
+    Display(),
     Countdown(),
   ];
 
@@ -28,7 +27,7 @@ class _NavigationState extends State<NavigationScreen>{
     ),
     BarItem(
       icon: Icons.file_download,
-      itemText: "Download",
+      itemText: "Display",
     ),
     BarItem(
       icon: Icons.timer,
