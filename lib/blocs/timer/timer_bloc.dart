@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'file:///D:/Project/register/lib/utils/timer.dart';
+import 'package:register/utils/ticker.dart';
 
 part 'timer_event.dart';
 part 'timer_state.dart';
@@ -15,7 +15,13 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   TimerStream _ticker;
 
   TimerBloc({TimerStream ticker})
-      : assert(ticker != null), _ticker = ticker, super(TimerInitial(duration: _duration));
+      : assert(ticker != null),
+        _ticker = ticker,
+        super(
+        TimerInitial(
+          duration: _duration,
+        ),
+      );
 
   @override
   Stream<TimerState> mapEventToState(
@@ -44,7 +50,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     return super.close();
   }
 
-  Stream _mapEventToTimerInitial(TimerStarted event) async* {
+  Stream<TimerState> _mapEventToTimerInitial(TimerStarted event) async* {
     yield TimerRunInProgress(
       duration: event.duration,
     );
@@ -54,20 +60,24 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     });
   }
 
-  Stream _mapEventToTimerTicked(TimerTicked event) async* {
+  Stream<TimerState> _mapEventToTimerTicked(TimerTicked event) async* {
     yield event.duration == 0
         ? TimerRunCompleted()
         : TimerRunInProgress(duration: event.duration);
   }
 
-  Stream _mapEventToTimerPaused(TimerPaused event) async* {
-    _subscription?.cancel();
-    yield TimerRunPaused(duration: state.duration);
+  Stream<TimerState> _mapEventToTimerPaused(TimerPaused event) async* {
+    if (state is TimerRunInProgress) {
+      _subscription?.pause();
+      yield TimerRunPaused(duration: state.duration);
+    }
   }
 
   Stream<TimerState> _mapEventToTimerResumed(TimerResumed resume) async* {
-    _subscription?.resume();
-    yield TimerRunInProgress(duration: state.duration);
+    if (state is TimerRunPaused) {
+      _subscription?.resume();
+      yield TimerRunInProgress(duration: state.duration);
+    }
   }
 
   Stream<TimerState> _mapEventToTimerReset(TimerReset event) async* {
