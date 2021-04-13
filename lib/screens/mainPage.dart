@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:register/screens/pages/Pages.dart';
 import 'package:register/utils/screens/class/BarItem.dart';
+import 'package:register/utils/utils.dart';
 
 class NavigationScreen extends StatefulWidget {
   NavigationScreen({
@@ -9,11 +10,9 @@ class NavigationScreen extends StatefulWidget {
 
   @override
   _NavigationState createState() => _NavigationState();
-
 }
 
-class _NavigationState extends State<NavigationScreen>{
-
+class _NavigationState extends State<NavigationScreen> {
   final pageList = [
     Register(),
     Display(),
@@ -40,12 +39,28 @@ class _NavigationState extends State<NavigationScreen>{
   BottomNavigationBarItem barItem({
     IconData icon,
     String itemText,
-  }){
+  }) {
     return BottomNavigationBarItem(
       icon: Icon(
         icon,
       ),
       label: itemText,
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Utils.timer(
+      times: 20,
+    ).listen(
+      (event) => print("event:$event"),
+    );
+    Utils.createFromIterable().listen(
+      (event) => print(
+        "event from Iterable:$event",
+      ),
     );
   }
 
@@ -58,14 +73,19 @@ class _NavigationState extends State<NavigationScreen>{
         selectedItemColor: Colors.blue,
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
-        onTap: (currentPageIndex){
+        onTap: (currentPageIndex) {
           setState(() {
             currentIndex = currentPageIndex;
           });
         },
-        items: barItemList.map((e) => barItem(
-          icon: e.icon, itemText: e.itemText,),
-        ).toList(),
+        items: barItemList
+            .map(
+              (e) => barItem(
+                icon: e.icon,
+                itemText: e.itemText,
+              ),
+            )
+            .toList(),
       ),
     );
   }
