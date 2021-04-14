@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:register/screens/pages/InfiniteList.dart';
 import 'package:register/screens/pages/Pages.dart';
 import 'package:register/utils/screens/class/BarItem.dart';
 import 'package:register/utils/utils.dart';
@@ -19,6 +18,7 @@ class _NavigationState extends State<NavigationScreen> {
     Display(),
     Countdown(),
     InfiniteList(),
+    PhotosSlide(),
   ];
 
   final List<BarItem> barItemList = [
@@ -37,6 +37,10 @@ class _NavigationState extends State<NavigationScreen> {
     BarItem(
       icon: Icons.list,
       itemText: "List",
+    ),
+    BarItem(
+      icon: Icons.slideshow,
+      itemText: "Slide",
     ),
   ];
 
