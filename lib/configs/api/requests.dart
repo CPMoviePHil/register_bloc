@@ -42,4 +42,32 @@ class RequestsManager {
     }
   }
 
+  static Future<dynamic> get({
+    Uri uri,
+    Map<String, dynamic> params,
+    bool needCheck,
+  }) async {
+    try {
+      final data = await http.get(
+        uri,
+        headers: getHeaders(),
+      );
+      if (data.statusCode == 200) {
+        if (needCheck) {
+          if (json.decode(data.body)['result']) {
+            return json.decode(data.body);
+          } else {
+            return null;
+          }
+        } else {
+          return json.decode(data.body);
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
 }
